@@ -3,6 +3,10 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DashboardModule } from './features/dashboard/dashboard.module';
+import { EmpleadosModule } from './features/empleados/empleados.module';
+import { VacacionesModule } from './features/vacaciones/vacaciones.module';
+import { AsistenciasModule } from './features/asistencias/asistencias.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DashboardModule,
+    EmpleadosModule,
+    VacacionesModule,
+    AsistenciasModule
   ],
   providers: [
     provideClientHydration(withEventReplay())
