@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './features/dashboard/dashboard.module';
@@ -18,7 +18,8 @@ import { AsistenciasModule } from './features/asistencias/asistencias.module';
     DashboardModule,
     EmpleadosModule,
     VacacionesModule,
-    AsistenciasModule
+    AsistenciasModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(withEventReplay())

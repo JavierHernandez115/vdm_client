@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { ListaService } from '../services/lista.service';
+import { EmpleadosService } from '../service/empleados.service';
+import { catchError, throwError } from 'rxjs';
+
+
 @Component({
   selector: 'app-lista',
   standalone: false,
@@ -8,16 +11,26 @@ import { ListaService } from '../services/lista.service';
   styleUrl: './lista.component.css'
 })
 export class ListaComponent {
-  data: any[]=[];
-  constructor(private apiService: ListaService){}
+  data: any=[];
+  constructor(private apiService: EmpleadosService){}
   ngOnInit():void{
-    this.llenarData();
+    this.ListarEmpleados();
   }
 
-  llenarData(){
-    this.apiService.getData().subscribe(data => {
-      this.data=data;
-      console.log(this.data)
-    })
-  }
+  ListarEmpleados() {
+    this.apiService.getAll().pipe(
+        catchError((error) => {
+            console.error('Error capturado:', error);
+            return throwError(error);
+        })
+    ).subscribe(
+        (data) => {
+            console.log('Datos recibidos:', data);
+            this.data = data;
+        },
+        (error) => {
+            console.error('Error en el bloque subscribe:', error);
+        }
+    );
+}
 }
