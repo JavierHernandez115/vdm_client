@@ -1,1 +1,28 @@
-<p></p>
+<div class="container">
+    <h2>Lista de Empleados</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Fecha de Entrada</th>
+          <th>Creado el</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let empleado of data"
+          [routerLink]="['/empleados', empleado.id]"
+          style="cursor: pointer;"
+        >
+          <td>{{ empleado.id }}</td>
+          <td>{{ empleado.nombre }}</td>
+          <td>{{ empleado.telefono }}</td>
+          <td>{{ empleado.fecha_entrada }}</td>
+          <td>{{ empleado.created_at | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
