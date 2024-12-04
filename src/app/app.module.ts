@@ -8,10 +8,12 @@ import { EmpleadosModule } from './features/empleados/empleados.module';
 import { VacacionesModule } from './features/vacaciones/vacaciones.module';
 import { AsistenciasModule } from './features/asistencias/asistencias.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AbonosModule } from './features/abonos/abonos.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmpleadosModule,
     VacacionesModule,
     AsistenciasModule,
+    AbonosModule,
     HttpClientModule
   ],
   providers: [
