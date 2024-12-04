@@ -11,7 +11,11 @@ import { catchError, throwError } from 'rxjs';
 })
 export class ListaComponent {
 
-  Abonos: any=[];
+  AbonosData: any=[];
+  errorMessage: string = '';
+  selectedId: number | null = null;
+  dialogVisible = false;
+
   constructor(private apiService: AbonosService){}
   ngOnInit():void{
     this.ListarAbonos();
@@ -26,11 +30,20 @@ export class ListaComponent {
     ).subscribe(
         (data) => {
             console.log('Datos recibidos:', data);
-            this.Abonos = data;
+            this.AbonosData = data;
         },
         (error) => {
             console.error('Error en el bloque subscribe:', error);
         }
     );
-}
+  }
+
+  onDialogClosed() {
+    this.dialogVisible = false;
+  }
+
+  showDetail(id: number) {
+    this.selectedId = id;
+    this.dialogVisible = true;
+  }
 }

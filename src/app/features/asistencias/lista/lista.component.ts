@@ -10,8 +10,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './lista.component.css'
 })
 export class ListaComponent implements OnInit {
-  asistencias: any[] = []; // Solo un arreglo para manejar los datos
+  asistenciasData: any[] = []; // Solo un arreglo para manejar los datos
   fechaFiltro: string | null = null; // Almacena la fecha obtenida de la URL
+  errorMessage: string = '';
+  selectedId: number | null = null;
+  dialogVisible = false;
 
   constructor(
     private route: ActivatedRoute, // Para capturar los parámetros
@@ -45,7 +48,7 @@ export class ListaComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('Datos generales recibidos:', data);
-          this.asistencias = data; // Actualizar el arreglo único
+          this.asistenciasData = data; // Actualizar el arreglo único
         },
         (error) => {
           console.error('Error en el bloque subscribe:', error);
@@ -65,11 +68,20 @@ export class ListaComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log(`Datos filtrados para la fecha ${fecha}:`, data);
-          this.asistencias = data; // Actualizar el arreglo único
+          this.asistenciasData = data; // Actualizar el arreglo único
         },
         (error) => {
           console.error('Error en el bloque subscribe:', error);
         }
       );
+  }
+
+  onDialogClosed() {
+    this.dialogVisible = false;
+  }
+
+  showDetail(id: number) {
+    this.selectedId = id;
+    this.dialogVisible = true;
   }
 }

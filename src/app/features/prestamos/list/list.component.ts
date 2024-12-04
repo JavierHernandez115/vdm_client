@@ -9,7 +9,10 @@ import { catchError ,throwError } from 'rxjs';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-  Prestamos: any=[];
+  PrestamosData: any=[];
+  errorMessage: string = '';
+  selectedId: number | null = null;
+  dialogVisible = false;
   constructor(private apiService: PrestamosService){}
   ngOnInit():void{
     this.ListarPrestamos();
@@ -24,12 +27,21 @@ export class ListComponent {
     ).subscribe(
         (data) => {
             console.log('Datos recibidos:', data);
-            this.Prestamos = data;
+            this.PrestamosData = data;
         },
         (error) => {
             console.error('Error en el bloque subscribe:', error);
         }
     );
-}
+  }
+
+  onDialogClosed() {
+    this.dialogVisible = false;
+  }
+
+  showDetail(id: number) {
+    this.selectedId = id;
+    this.dialogVisible = true;
+  }
 }
 

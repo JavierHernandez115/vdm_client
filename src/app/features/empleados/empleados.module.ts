@@ -4,7 +4,11 @@ import { ListaComponent } from './lista/lista.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { FormComponent } from './form/form.component';
 import { EmpleadosRoutingModule } from './empleados-routing.module';
-
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,12 @@ import { EmpleadosRoutingModule } from './empleados-routing.module';
   ],
   imports: [
     CommonModule,
-    EmpleadosRoutingModule
+    EmpleadosRoutingModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    CalendarModule,
+    ProgressSpinnerModule,
   ]
 })
 export class EmpleadosModule { }

@@ -4,7 +4,11 @@ import { ListaComponent } from './lista/lista.component';
 import { FormComponent } from './form/form.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { AsistenciasRoutingModule } from './asistencias-routing.module';
-
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -15,7 +19,12 @@ import { AsistenciasRoutingModule } from './asistencias-routing.module';
   ],
   imports: [
     CommonModule,
-    AsistenciasRoutingModule
+    AsistenciasRoutingModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    CalendarModule,
+    ProgressSpinnerModule,
   ]
 })
 export class AsistenciasModule { }

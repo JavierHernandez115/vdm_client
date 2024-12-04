@@ -1,1 +1,40 @@
-<p>lista works!</p>
+<p-table
+  [value]="AbonosData"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  styleClass="p-datatable-striped p-datatable-sm"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <div class="flex justify-content-center">
+          Nombre Empleados
+          <p-columnFilter type="text" field="nombre" display="menu" />
+        </div>
+      </th>
+      <th>
+        Monto del Abono
+        <p-columnFilter type="text" field="monto_a" display="menu" />
+      </th>
+      <th pSortableColumn="Restante del Prestamo">
+        Restante del prestamk <p-sortIcon field="monto_a" />
+      </th>
+      <th>Detalles</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-Abono>
+    <tr>
+      <td>{{ Abono.nombre_empleado }}</td>
+      <td>{{ Abono.monto_abono }}</td>
+      <td>{{ Abono.fecha_abono}}</td>
+      <td>
+        <p-button icon="pi pi-search-plus" (click)="showDetail(Abono.id)" />
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!---<app-detail
+  [dialogDetail]="dialogVisible"
+  [id]="selectedId"
+  (dialogClosed)="onDialogClosed()"
+></app-detail>--->
