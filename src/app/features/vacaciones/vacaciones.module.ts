@@ -5,16 +5,20 @@ import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import {VacacionesRoutingModule} from './vacaciones-routing.module'
 
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
     DetailComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
   ],
   imports: [
     CommonModule,
-    VacacionesRoutingModule
+    VacacionesRoutingModule,
+    TableModule,
+    ButtonModule,
   ]
 })
 export class VacacionesModule { }

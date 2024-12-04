@@ -1,1 +1,35 @@
-<p>list works!</p>
+<p-table [value]="vacacionesData" [tableStyle]="{'min-width': '50rem'}" styleClass="p-datatable-striped p-datatable-sm">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="name">
+                Nombre <p-sortIcon field="name" />
+            </th>
+            <th pSortableColumn="fecha_inicio">
+                Fecha de Inicio <p-sortIcon field="fecha_inicio" />
+            </th>
+            <th pSortableColumn="fecha_fin">
+                Fecha de Fin <p-sortIcon field="fecha_fin" />
+            </th>
+            <th pSortableColumn="dias_tomados">
+                Días Tomados <p-sortIcon field="dias_tomados" />
+            </th>
+            <th>Detalles</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vaca>
+        <tr [ngClass]="{'alert': vaca.dias_tomados > 3}">
+            <td>Juan</td>
+            <td>{{vaca.fecha_inicio}}</td>
+            <td>{{vaca.fecha_fin}}</td>
+            <td>
+                <div
+                    [ngClass]="{'outofday': vaca.dias_tomados === 0, 'lowday': (vaca.dias_tomados > 0 && vaca.dias_tomados < 5),'inday': vaca.dias_tomados >= 5}">
+                    {{vaca.dias_tomados}}
+                </div>
+            </td>
+            <td>
+                <p-button icon="pi pi-search-plus" />
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
