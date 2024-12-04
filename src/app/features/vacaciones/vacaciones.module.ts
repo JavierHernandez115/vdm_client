@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
-
+import {VacacionesRoutingModule} from './vacaciones-routing.module'
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FormComponent } from './form/form.component';
     FormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    VacacionesRoutingModule
   ]
 })
 export class VacacionesModule { }
