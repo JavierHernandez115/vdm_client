@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EmpleadosService } from '../service/empleados.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-detalle',
   standalone: false,
@@ -9,9 +10,17 @@ import { EmpleadosService } from '../service/empleados.service';
 })
 export class DetalleComponent {
 
-  constructor(private empleadosService: EmpleadosService){}
+  constructor(
+    private empleadosService: EmpleadosService,
+    private route: ActivatedRoute
+    ){}
   ngOnInit():void{
-    this.getEmpleadoById(1);
+    this.route.paramMap.subscribe((params) => {
+      const id = Number(params.get('id')); // Obtener el ID como número
+      if (id) {
+        this.getEmpleadoById(id);
+      }
+    });
   }
 
   getEmpleadoById(id: number) {
