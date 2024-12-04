@@ -1,1 +1,26 @@
-<p>detail works!</p>
+<p-dialog header="Vista de Calendario" [modal]="true" [(visible)]="dialogDetail" (onHide)="onDialogClose()"
+    [draggable]="false">
+
+    <p-progressSpinner *ngIf="isLoading" styleClass="p-d-block"
+        [style]="{ 'width': '50px', 'height': '50px' }"></p-progressSpinner>
+
+    <p-calendar *ngIf="!isLoading" class="max-w-full" [defaultDate]="startDate" [inline]="true"
+        [disabledDates]="disabledDates" [numberOfMonths]="months" [monthNavigator]="true" [yearNavigator]="true"
+        [readonlyInput]="true">
+        <ng-template pTemplate="date" let-date>
+            <span [ngStyle]="{
+                      'background-color': isDateInRange(date) ? '#007ad9' : 'inherit',
+                      'color': isDateInRange(date) ? 'white' : 'inherit',
+                      'border-radius': '50%',
+                      'width': '2rem',
+                      'height': '2rem',
+                      'display': 'inline-block',
+                      'text-align': 'center',
+                      'line-height': '2rem'
+                    }">
+                {{ date.day }}
+            </span>
+        </ng-template>
+
+    </p-calendar>
+</p-dialog>

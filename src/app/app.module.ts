@@ -7,6 +7,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { EmpleadosModule } from './features/empleados/empleados.module';
 import { VacacionesModule } from './features/vacaciones/vacaciones.module';
 import { AsistenciasModule } from './features/asistencias/asistencias.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AsistenciasModule } from './features/asistencias/asistencias.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     DashboardModule,
     EmpleadosModule,

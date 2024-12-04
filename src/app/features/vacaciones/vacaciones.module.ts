@@ -7,6 +7,9 @@ import {VacacionesRoutingModule} from './vacaciones-routing.module'
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { ButtonModule } from 'primeng/button';
     VacacionesRoutingModule,
     TableModule,
     ButtonModule,
+    DialogModule,
+    CalendarModule,
+    ProgressSpinnerModule,
   ]
 })
 export class VacacionesModule { }
