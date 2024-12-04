@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { PrestamosRoutingModule } from './prestamos-routing,module';
 
 
 
@@ -13,7 +14,8 @@ import { DetalleComponent } from './detalle/detalle.component';
     DetalleComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PrestamosRoutingModule
   ]
 })
 export class PrestamosModule { }
