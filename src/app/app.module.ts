@@ -7,10 +7,12 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { EmpleadosModule } from './features/empleados/empleados.module';
 import { VacacionesModule } from './features/vacaciones/vacaciones.module';
 import { AsistenciasModule } from './features/asistencias/asistencias.module';
+import { AbonosModule } from './features/abonos/abonos.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,7 @@ import { AsistenciasModule } from './features/asistencias/asistencias.module';
     EmpleadosModule,
     VacacionesModule,
     AsistenciasModule,
+    AbonosModule,
     HttpClientModule
   ],
   providers: [

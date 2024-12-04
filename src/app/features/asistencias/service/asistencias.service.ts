@@ -10,6 +10,12 @@ import { Observable } from 'rxjs';
 export class AsistenciasService {
   private BaseUrl= environment.ServUrl+"asistencias"
 
+
+   //Listar By Date
+   getByDate(fecha: string): Observable<any> {
+    return this.http.get<any>(`${this.BaseUrl}/${fecha}`);
+  }
+
    //Lista a todas las asistencias
    getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.BaseUrl}`);
