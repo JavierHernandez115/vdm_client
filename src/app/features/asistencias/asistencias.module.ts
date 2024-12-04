@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListaComponent } from './lista/lista.component';
 import { FormComponent } from './form/form.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { AsistenciasRoutingModule } from './asistencias-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { DetalleComponent } from './detalle/detalle.component';
     DetalleComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AsistenciasRoutingModule
   ]
 })
 export class AsistenciasModule { }
