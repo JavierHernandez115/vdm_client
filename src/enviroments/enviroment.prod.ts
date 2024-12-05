@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    ServUrl: 'http://localhost:3000/api' // URL del servidor para desarrollo
+    ServUrl: 'https://web-production-8f9d.up.railway.app/api' // URL del servidor para desarrollo
   };
   

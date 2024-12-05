@@ -10,6 +10,10 @@ export class AbonosService {
   private BaseUrl= environment.ServUrl+"abonos"
   
   //Lista a todos los Abonos
+  
+  getAllByEmpleados(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.ServUrl}empleado/${id}/abonos`);
+  }
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.BaseUrl}`);
   }

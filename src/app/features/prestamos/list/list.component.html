@@ -18,6 +18,16 @@
       <th pSortableColumn="monto_a">
         Monto de abono <p-sortIcon field="monto_a" />
       </th>
+      <th>
+        Razon del prestamo
+        <p-columnFilter type="text" field="razon_p" display="menu" />
+      </th>
+      <th pSortableColumn="fecha_p">
+        Fecha del prestamo <p-sortIcon field="fecha_p" />
+      </th>
+      <th pSortableColumn="Estado">
+        Estado <p-sortIcon field="Estado" />
+      </th>
       <th>Detalles</th>
     </tr>
   </ng-template>
@@ -26,6 +36,18 @@
       <td>{{ Prestamo.nombre_empleado }}</td>
       <td>{{ Prestamo.monto_prestamo }}</td>
       <td>{{ Prestamo.abono_semanal}}</td>
+      <td>{{ Prestamo.razon}}</td>
+      <td>{{ Prestamo.fecha_prestamo | date: 'dd/MM/yyyy' }}</td>
+      <td class="text-center">
+        <i
+          class="pi"
+          [ngClass]="{
+            'pi-check': !Prestamo.estatus,
+            'pi-times': Prestamo.estatus
+          }"
+          style="font-size: 1.2rem"
+        ></i>
+      </td>
       <td>
         <p-button icon="pi pi-search-plus" (click)="showDetail(Prestamo.id)" />
       </td>

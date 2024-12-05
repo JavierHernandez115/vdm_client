@@ -7,6 +7,7 @@ import path from 'path';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+    { path: '', component: ListComponent },
     {path: 'lista', component: ListComponent},
     {path: 'detalles/:id', component: DetailComponent},
     {path: 'form', component: FormComponent},

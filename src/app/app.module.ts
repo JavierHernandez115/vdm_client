@@ -3,13 +3,14 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardModule } from './features/dashboard/dashboard.module';
 import { EmpleadosModule } from './features/empleados/empleados.module';
 import { VacacionesModule } from './features/vacaciones/vacaciones.module';
 import { AsistenciasModule } from './features/asistencias/asistencias.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AbonosModule } from './features/abonos/abonos.module';
-
+import { RouterModule } from '@angular/router';
+import { DashboardModule } from './features/dashboard/dashboard.module';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { AbonosModule } from './features/abonos/abonos.module';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
+    DashboardModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    DashboardModule,
     EmpleadosModule,
     VacacionesModule,
     AsistenciasModule,
@@ -27,7 +29,8 @@ import { AbonosModule } from './features/abonos/abonos.module';
     HttpClientModule
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

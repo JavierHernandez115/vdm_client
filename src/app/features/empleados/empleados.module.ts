@@ -10,12 +10,11 @@ import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     ListaComponent,
     DetalleComponent,
-    FormComponent
+    FormComponent,
   ],
   imports: [
     CommonModule,

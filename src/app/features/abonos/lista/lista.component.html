@@ -12,11 +12,19 @@
         </div>
       </th>
       <th>
+        Razon del prestamo
+        <p-columnFilter type="text" field="razon_p" display="menu" />
+      </th>
+      <th>
+        Fecha del abono
+        <p-columnFilter type="text" field="fecha_a" display="menu" />
+      </th>
+      <th>
         Monto del Abono
         <p-columnFilter type="text" field="monto_a" display="menu" />
       </th>
       <th pSortableColumn="Restante del Prestamo">
-        Restante del prestamk <p-sortIcon field="monto_a" />
+        Restante del prestamo <p-sortIcon field="monto_a" />
       </th>
       <th>Detalles</th>
     </tr>
@@ -24,8 +32,12 @@
   <ng-template pTemplate="body" let-Abono>
     <tr>
       <td>{{ Abono.nombre_empleado }}</td>
+      <td>{{ Abono.razon_prestamo }}</td>
+      <td>{{ Abono.fecha_abono | date: 'dd/MM/yyyy' }}</td>
       <td>{{ Abono.monto_abono }}</td>
-      <td>{{ Abono.fecha_abono}}</td>
+      <td>{{Abono.deuda_restante}}</td>
+      
+      
       <td>
         <p-button icon="pi pi-search-plus" (click)="showDetail(Abono.id)" />
       </td>

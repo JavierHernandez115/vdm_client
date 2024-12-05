@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { VacacionesService } from '../service/vacaciones.service';
 import { catchError, throwError } from 'rxjs';
 import { Table } from 'primeng/table';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -14,30 +15,56 @@ export class ListComponent {
   errorMessage: string = '';
   selectedId: number | null = null;
   dialogVisible = false;
-
-  constructor(private apiService: VacacionesService) { }
+  @Input() empleadoId: number | null = null;
+  constructor(
+    private apiService: VacacionesService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.ListarVacacionesTomadas();
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id'); // Captura el id de la URL
+      if (id) {
+        this.empleadoId = +id; // Si se encuentra un id, asignarlo como número
+      }
+      this.ListarVacacionesTomadas(); // Llamar a la función para cargar los datos
+    });
   }
 
   ListarVacacionesTomadas() {
-    this.apiService.getAllVT().pipe(
-      catchError((error) => {
-        console.error('Error capturado:', error);
-        this.errorMessage = 'Hubo un problema al cargar las vacaciones.';
-        return throwError(error);
-      })
-    ).subscribe(
-      (data) => {
-        console.log('Datos recibidos:', data);
-        this.vacacionesData = data;
-        this.errorMessage = '';
-      },
-      (error) => {
-        console.error('Error en el bloque subscribe:', error);
-      }
-    );
+    if (this.empleadoId) {
+      // Si hay un empleadoId, llamar a la función que consulta por empleado
+      this.apiService.getAllByEmpleados(this.empleadoId).pipe(
+        catchError((error) => {
+          console.error('Error capturado:', error);
+          return throwError(error);
+        })
+      ).subscribe(
+        (data) => {
+          console.log('Datos recibidos:', data);
+          this.vacacionesData = data; // Asignar los datos a la propiedad PrestamosData
+        },
+        (error) => {
+          console.error('Error en el bloque subscribe:', error);
+        }
+      );
+    } else {
+      // Si no hay un empleadoId, llamar a la función que consulta todos los préstamos
+      this.apiService.getAllVT().pipe(
+        catchError((error) => {
+          console.error('Error capturado:', error);
+          return throwError(error);
+        })
+      ).subscribe(
+        (data) => {
+          console.log('Datos recibidos:', data);
+          this.vacacionesData = data; // Asignar los datos a la propiedad PrestamosData
+        },
+        (error) => {
+          console.error('Error en el bloque subscribe:', error);
+        }
+      );
+    }
   }
 
   onDialogClosed() {

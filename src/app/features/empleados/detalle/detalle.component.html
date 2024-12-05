@@ -1,1 +1,64 @@
-<p>detalle works!</p>
+<div class="p-fluid formgrid grid">
+    <!-- Información del Empleado -->
+    <div class="field col-12">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        pInputText
+        [value]="empleadoData?.nombre"
+        disabled
+      />
+    </div>
+  
+    <div class="field col-12">
+      <label for="telefono">Teléfono</label>
+      <input
+        id="telefono"
+        type="text"
+        pInputText
+        [value]="empleadoData?.telefono"
+        disabled
+      />
+    </div>
+  
+    <div class="field col-12">
+      <label for="fecha_entrada">Fecha de Entrada</label>
+      <p-calendar
+        id="fecha_entrada"
+        [(ngModel)]="empleadoData.fecha_entrada"
+        dateFormat="yy-mm-dd"
+        disabled
+      ></p-calendar>
+    </div>
+
+ <!-- Botones de acción -->
+ <div class="col-12">
+    <div class="flex flex-wrap gap-3 justify-content-end">
+      <button
+        pButton
+        label="Actualizar Empleado"
+        icon="pi pi-refresh"
+        class="p-button-warning"
+        (click)="navigateToEdit()"
+      ></button>
+  </div>
+  <nav>
+    <ul class="main">
+      <li>
+        <a routerLink="/empleados/detalles/{{empleadoData?.id}}/prestamos/{{empleadoData?.id}}">Prestamos</a>
+      </li>
+      <li>
+        <a routerLink="/empleados/detalles/{{empleadoData?.id}}/abonos/{{empleadoData?.id}}">Abonos</a>
+      </li>
+      <li>
+        <a routerLink="/empleados/detalles/{{empleadoData?.id}}/vacaciones_tomadas/{{empleadoData?.id}}">Vacaciones</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <!-- Contenedor para cargar los módulos -->
+  <main>
+    <router-outlet></router-outlet> <!-- Aquí es donde se cargan los módulos hijos -->
+  </main>
+

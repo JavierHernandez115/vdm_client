@@ -33,7 +33,7 @@ export class AsistenciasService {
 
     // Crea un nueva asistencia
   create(empleado: any): Observable<any> {
-    return this.http.post<any>(`${this.BaseUrl}`, empleado);
+    return this.http.post<any>(`${this.BaseUrl}/`, empleado);
   }
   
 

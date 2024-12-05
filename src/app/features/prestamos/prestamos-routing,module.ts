@@ -5,9 +5,11 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
+  { path: '', component: ListComponent },
   { path: 'lista', component: ListComponent },
   { path: 'detalles/:id', component: DetalleComponent },
   { path: 'form', component: FormComponent },
+  { path: 'lista/:id',component: ListComponent}
 ];
 
 @NgModule({

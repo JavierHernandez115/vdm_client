@@ -5,6 +5,7 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
+  { path: '', component: ListaComponent },
   { path: 'lista', component: ListaComponent },
   { path: 'detalles/:id', component: DetalleComponent },
   { path: 'form', component: FormComponent },

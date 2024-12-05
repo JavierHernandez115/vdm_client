@@ -9,14 +9,14 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
-
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
     ListComponent,
     FormComponent,
-    DetalleComponent
+    DetalleComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +26,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     DialogModule,
     CalendarModule,
     ProgressSpinnerModule,
+    FormsModule,
+    DropdownModule
   ]
 })
 export class PrestamosModule { }

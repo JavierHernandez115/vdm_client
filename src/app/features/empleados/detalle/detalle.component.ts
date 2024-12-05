@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
 import { EmpleadosService } from '../service/empleados.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-detalle',
   standalone: false,
   
   templateUrl: './detalle.component.html',
-  styleUrl: './detalle.component.css'
+  styleUrl: './detalle.component.css',
+  
 })
 export class DetalleComponent {
 
+  empleadoData:any
   constructor(
     private empleadosService: EmpleadosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ){}
   ngOnInit():void{
     this.route.paramMap.subscribe((params) => {
@@ -23,10 +26,20 @@ export class DetalleComponent {
     });
   }
 
-  getEmpleadoById(id: number) {
+  getEmpleadoById(id: number): void {
     this.empleadosService.getById(id).subscribe({
-      next: (empleado) => console.log('Empleado:', empleado),
-      error: (error) => console.error('Error:', error),
+      next: (empleado) => {
+        this.empleadoData = empleado; // Guardamos la información del empleado
+      },
+      error: (error) => {
+        console.error('Error al obtener el empleado:', error);
+      },
     });
+  }
+
+  navigateToEdit(): void {
+    if (this.empleadoData) {
+      this.router.navigate([`/empleados/form/`, this.empleadoData.id]); // Navegar a la edición de empleado
+    }
   }
 }

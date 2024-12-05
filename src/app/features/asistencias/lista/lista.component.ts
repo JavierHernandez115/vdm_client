@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AsistenciasService } from '../service/asistencias.service';
 import { catchError, throwError } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-lista',
   standalone: false,
@@ -15,10 +15,11 @@ export class ListaComponent implements OnInit {
   errorMessage: string = '';
   selectedId: number | null = null;
   dialogVisible = false;
-
+  selectedDate: Date | undefined;
   constructor(
     private route: ActivatedRoute, // Para capturar los parámetros
-    private apiService: AsistenciasService
+    private apiService: AsistenciasService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +76,22 @@ export class ListaComponent implements OnInit {
         }
       );
   }
+
+  onSearchByDate() {
+    if (this.selectedDate) {
+      // Formateamos la fecha en formato 'yy-mm-dd'
+      const fechaFormateada = this.formatDate(this.selectedDate);
+      this.router.navigate(['/asistencias/lista', fechaFormateada]);  // Actualiza la URL con la fecha formateada
+    }
+  }
+
+  private formatDate(date: Date): string {
+    const year = date.getFullYear(); // Año completo (ejemplo: 2024)
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Asegura que el mes tenga dos dígitos
+    const day = date.getDate().toString().padStart(2, '0'); // Asegura que el día tenga dos dígitos
+    return `${year}-${month}-${day}`; // Formato: yyyy-mm-dd
+  }
+  
 
   onDialogClosed() {
     this.dialogVisible = false;

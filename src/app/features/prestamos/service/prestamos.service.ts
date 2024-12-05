@@ -8,6 +8,11 @@ import { Observable } from 'rxjs';
 export class PrestamosService {
   private BaseUrl= environment.ServUrl+"prestamos"
 
+  //Prestamos por Empleado
+  getAllByEmpleados(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.ServUrl}empleado/${id}/prestamos`);
+  }
+
   //Optiene todos los prestamos
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.BaseUrl}`);

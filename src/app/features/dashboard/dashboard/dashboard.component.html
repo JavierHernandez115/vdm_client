@@ -1,0 +1,40 @@
+<nav>
+  <ul class="main">
+    <li>
+      <a routerLink="empleados">Empleados</a>
+      <ul class="drop menu4">
+        <li><a href="#" routerLink="empleados/form">Crear Empleado</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="asistencias">Asistencias</a>
+      <ul class="drop menu6">
+        <li><a href="#" routerLink="about/home">Registrar asistencias</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="vacaciones">Vacaciones</a>
+      <ul class="drop menu4">
+        <li><a href="#" routerLink="#">Agregar Vacaciones</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="prestamos">Prestamos</a>
+      <ul class="drop menu4">
+        <li><a href="#" routerLink="#">Crear Pestamo</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="pagos">Pagos</a>
+      <ul class="drop menu4">
+        <li><a href="#" routerLink="/pagos/form">Pagar Nomina</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+    <!-- Contenedor para cargar los módulos -->
+    <main>
+        <router-outlet></router-outlet> <!-- Aquí es donde se cargan los módulos hijos -->
+    </main>
+

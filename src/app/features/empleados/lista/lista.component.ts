@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { EmpleadosService } from '../service/empleados.service';
 import { catchError, throwError } from 'rxjs';
 import { Table } from 'primeng/table';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-lista',
   standalone: false,
@@ -14,7 +14,10 @@ export class ListaComponent {
   empleadosData: any=[];
   dialogVisible = false;
   selectedId: number | null = null;
-  constructor(private apiService: EmpleadosService){}
+  constructor(
+    private apiService: EmpleadosService,
+    private router:Router
+  ){}
   ngOnInit():void{
     this.ListarEmpleados();
   }
@@ -42,7 +45,8 @@ export class ListaComponent {
   }
 
   showDetail(id: number) {
-    this.selectedId = id;
-    this.dialogVisible = true;
+    if (this.empleadosData) {
+      this.router.navigate([`/empleados/detalles/`, id]); // Navegar a la edición de empleado
+    }
   }
 }

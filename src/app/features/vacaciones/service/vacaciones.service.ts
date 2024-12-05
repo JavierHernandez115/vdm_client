@@ -11,6 +11,10 @@ export class VacacionesService {
   private BaseUrlVT=environment.ServUrl+'vacaciones_tomadas'
   private BaseUrlV=environment.ServUrl+'vacaciones'
 
+  //Vacaciones tomadas  por Empleado
+  getAllByEmpleados(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.ServUrl}empleado/${id}/vacacion_tomada`);
+  }
 
   //Listar Todas las vacaciones Tomadas
   getAllVT():Observable<any[]>{

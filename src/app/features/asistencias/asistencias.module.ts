@@ -9,6 +9,9 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+
 
 
 @NgModule({
@@ -21,10 +24,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CommonModule,
     AsistenciasRoutingModule,
     TableModule,
+    FormsModule,
     ButtonModule,
     DialogModule,
     CalendarModule,
     ProgressSpinnerModule,
-  ]
+    ReactiveFormsModule,
+    CheckboxModule
+  ],
 })
 export class AsistenciasModule { }

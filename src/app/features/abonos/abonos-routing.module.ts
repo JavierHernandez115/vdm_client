@@ -1,6 +1,4 @@
-import { Component, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import path from 'path';
+import { NgModule } from '@angular/core';
 import {ListaComponent} from './lista/lista.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { RouterModule, Routes } from '@angular/router';
