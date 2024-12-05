@@ -1,92 +1,71 @@
-<div class="p-fluid formgrid grid">
-    <!-- Campo: Nombre del empleado -->
-    <div class="field col-12">
-      <label for="empleado">Empleado</label>
-      <p-dropdown
-        id="empleado"
-        [options]="empleados" 
-        [(ngModel)]="prestamo.empleado"
-        placeholder="Seleccione un empleado"
-        optionLabel="nombre_empleado"
-        optionValue="id"
-      ></p-dropdown>
-    </div>
-  
-    <!-- Campo: Monto del préstamo -->
-    <div class="field col-12">
-      <label for="monto_prestamo">Monto del Préstamo</label>
-      <input
-        id="monto_prestamo"
-        type="text"
-        pInputText
-        [(ngModel)]="prestamo.monto_prestamo"
-        placeholder="Ingrese el monto del préstamo"
-      />
-    </div>
-  
-    <!-- Campo: Abono semanal -->
-    <div class="field col-12">
-      <label for="abono_semanal">Abono Semanal</label>
-      <input
-        id="abono_semanal"
-        type="text"
-        pInputText
-        [(ngModel)]="prestamo.abono_semanal"
-        placeholder="Ingrese el abono semanal"
-      />
-    </div>
-  
-    <!-- Campo: Razón del préstamo -->
-    <div class="field col-12">
-      <label for="razon">Razón del Préstamo</label>
-      <textarea
-        id="razon"
-        rows="3"
-        pInputTextarea
-        [(ngModel)]="prestamo.razon"
-        placeholder="Ingrese la razón del préstamo"
-      ></textarea>
-    </div>
-  
-    <!-- Campo: Fecha del préstamo -->
-    <div class="field col-12">
-      <label for="fecha_prestamo">Fecha del Préstamo</label>
-      <p-calendar
-        id="fecha_prestamo"
-        [(ngModel)]="prestamo.fecha_prestamo"
-        dateFormat="yy-mm-dd"
-        placeholder="Seleccione la fecha del préstamo"
-      ></p-calendar>
-    </div>
-  
-    <!-- Botones de acción -->
-    <div class="col-12">
-      <div class="flex flex-wrap gap-3 justify-content-end">
-        <button
-          pButton
-          label="Crear Préstamo"
-          icon="pi pi-plus"
-          class="p-button-success"
-          (click)="createPrestamo()"
-          *ngIf="!prestamo.id"
-        ></button>
-        <button
-          pButton
-          label="Actualizar Préstamo"
-          icon="pi pi-refresh"
-          class="p-button-warning"
-          (click)="updatePrestamo()"
-          *ngIf="prestamo.id"
-        ></button>
-        <button
-          pButton
-          label="Eliminar Préstamo"
-          icon="pi pi-trash"
-          class="p-button-danger"
-          (click)="deletePrestamo()"
-          *ngIf="prestamo.id"
-        ></button>
-      </div>
-    </div>
+<form (ngSubmit)="onSubmit()" #prestamoForm="ngForm" class="p-fluid">
+  <!-- Selector de Empleado -->
+  <div class="field">
+    <label for="empleado">Empleado</label>
+    <p-dropdown
+      [options]="empleados"
+      optionLabel="nombre"
+      optionValue="id"
+      [(ngModel)]="prestamo.empleado"
+      name="empleado"
+      placeholder="Seleccione un empleado"
+      [showClear]="true"
+      required
+    ></p-dropdown>
   </div>
-  
+
+<!-- Campo con input básico -->
+<div class="field">
+  <label for="monto_prestamo">Monto del préstamo</label>
+  <input
+    id="monto_prestamo"
+    type="number"
+    [(ngModel)]="prestamo.monto_prestamo"
+    name="monto_prestamo"
+    placeholder="Ingrese el monto"
+    required
+  />
+</div>
+
+
+<div class="field">
+  <label for="abono_semanal">Abono semanal</label>
+  <input
+    id="abono_semanal"
+    type="number"
+    [(ngModel)]="prestamo.abono_semanal"
+    name="abono_semanal"
+    placeholder="Ingrese el abono semanal"
+    required
+  />
+</div>
+
+
+  <!-- Razón -->
+  <div class="field">
+    <label for="razon">Razón</label>
+    <textarea
+      pInputTextarea
+      id="razon"
+      [(ngModel)]="prestamo.razon"
+      name="razon"
+      rows="3"
+      placeholder="Razón del préstamo"
+      required
+    ></textarea>
+  </div>
+
+  <!-- Fecha del préstamo -->
+  <label for="fecha_prestamo">Fecha del préstamo:</label>
+  <input
+    type="date"
+    id="fecha_prestamo"
+    [(ngModel)]="prestamo.fecha_prestamo"
+    name="fecha_prestamo"
+    required
+  />
+  <!-- Botón Guardar -->
+  <div class="field">
+    <button pButton type="submit" label="Guardar" [disabled]="prestamoForm.invalid" class="p-button-success"></button>
+  </div>
+</form>

@@ -11,7 +11,7 @@ import { AbonosModule } from './features/abonos/abonos.module';
 import { RouterModule } from '@angular/router';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { MessageService } from 'primeng/api';
-
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +26,7 @@ import { MessageService } from 'primeng/api';
     VacacionesModule,
     AsistenciasModule,
     AbonosModule,
+    InputNumberModule,
     HttpClientModule
   ],
   providers: [

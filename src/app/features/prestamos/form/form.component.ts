@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PrestamosService } from '../service/prestamos.service';
 import { EmpleadosService } from '../../empleados/service/empleados.service'; // Servicio para listar empleados
 import { ActivatedRoute, Router } from '@angular/router';
+import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProvider';
 
 @Component({
   selector: 'app-form',
@@ -16,7 +17,7 @@ export class FormComponent {
     monto_prestamo: '',
     abono_semanal: '',
     razon: '',
-    fecha_prestamo: '', // Formato 'yy-mm-dd'
+    fecha_prestamo:'', // Formato 'yy-mm-dd'
   };
 
   empleados: any[] = []; // Lista de empleados para el dropdown
@@ -57,10 +58,11 @@ export class FormComponent {
   }
 
   createPrestamo(): void {
+    console.log(this.prestamo)
     this.prestamosService.create(this.prestamo).subscribe({
       next: (nuevoPrestamo) => {
         console.log('Préstamo creado con éxito:', nuevoPrestamo);
-        this.router.navigate(['/lista']); // Redirigir a la lista
+        this.router.navigate(['']); // Redirigir a la lista
       },
       error: (err) => console.error('Error al crear préstamo:', err),
     });
@@ -71,7 +73,7 @@ export class FormComponent {
       this.prestamosService.update(this.prestamo.id, this.prestamo).subscribe({
         next: (prestamoActualizado) => {
           console.log('Préstamo actualizado con éxito:', prestamoActualizado);
-          this.router.navigate(['/lista']); // Redirigir a la lista
+          this.router.navigate(['']); // Redirigir a la lista
         },
         error: (err) => console.error('Error al actualizar préstamo:', err),
       });
@@ -83,10 +85,35 @@ export class FormComponent {
       this.prestamosService.delete(this.prestamo.id).subscribe({
         next: () => {
           console.log(`Préstamo con ID ${this.prestamo.id} eliminado con éxito.`);
-          this.router.navigate(['/lista']); // Redirigir a la lista
+          this.router.navigate(['']); // Redirigir a la lista
         },
         error: (err) => console.error('Error al eliminar préstamo:', err),
       });
     }
   }
+
+  onSubmit(): void {
+    // Verificar si la fecha está seleccionada antes de formatearla
+  console.log('Datos del préstamo:', this.prestamo);
+    if (this.prestamo.id) {
+      // Actualizar préstamo existente
+      this.updatePrestamo();
+    } else {
+      // Crear nuevo préstamo
+      this.createPrestamo();
+    }
+  }
+
+  formatDate(date: any): string {
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      throw new Error('Fecha inválida');
+    }
+  
+    const year = date.getFullYear().toString().slice(-2); // Extraer los últimos 2 dígitos del año
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes con 2 dígitos
+    const day = date.getDate().toString().padStart(2, '0'); // Día con 2 dígitos
+  
+    return `${year}-${month}-${day}`;
+  }
+  
 }

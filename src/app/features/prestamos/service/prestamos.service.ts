@@ -30,7 +30,7 @@ export class PrestamosService {
 
     // Crea un nuevo prestamo
   create(empleado: any): Observable<any> {
-    return this.http.post<any>(`${this.BaseUrl}`, empleado);
+    return this.http.post<any>(`${this.BaseUrl}/`, empleado);
   }
   
 
