@@ -1,1 +1,63 @@
-<p>form works!</p>
+<div class="p-fluid formgrid grid">
+    <div class="field col-12">
+      <label for="nombre">Nombre</label>
+      <input
+        id="nombre"
+        type="text"
+        pInputText
+        [(ngModel)]="empleado.nombre"
+        placeholder="Ingrese el nombre del empleado"
+      />
+    </div>
+  
+    <div class="field col-12">
+      <label for="telefono">Teléfono</label>
+      <input
+        id="telefono"
+        type="text"
+        pInputText
+        [(ngModel)]="empleado.telefono"
+        placeholder="Ingrese el teléfono del empleado"
+      />
+    </div>
+  
+    <div class="field col-12">
+      <label for="fecha_entrada">Fecha de Entrada</label>
+      <p-calendar
+        id="fecha_entrada"
+        [(ngModel)]="empleado.fecha_entrada"
+        dateFormat="yy-mm-dd"
+        placeholder="Seleccione la fecha de entrada"
+      ></p-calendar>
+    </div>
+  
+    <div class="col-12">
+      <div class="flex flex-wrap gap-3 justify-content-end">
+        <button
+          pButton
+          label="Crear Empleado"
+          icon="pi pi-plus"
+          class="p-button-success"
+          (click)="createEmpleado()"
+          *ngIf="!empleado.id"
+        ></button>
+        <button
+          pButton
+          label="Actualizar Empleado"
+          icon="pi pi-refresh"
+          class="p-button-warning"
+          (click)="updateEmpleado()"
+          *ngIf="empleado.id"
+        ></button>
+        <button
+          pButton
+          label="Eliminar Empleado"
+          icon="pi pi-trash"
+          class="p-button-danger"
+          (click)="deleteEmpleado()"
+          *ngIf="empleado.id"
+        ></button>
+      </div>
+    </div>
+  </div>
+  

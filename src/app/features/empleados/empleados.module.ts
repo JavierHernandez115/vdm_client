@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     DialogModule,
     CalendarModule,
     ProgressSpinnerModule,
+    FormsModule
   ]
 })
 export class EmpleadosModule { }
