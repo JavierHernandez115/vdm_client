@@ -1,0 +1,64 @@
+<div class="p-grid p-justify-start">
+  <div class="p-col">
+    <p-calendar [(ngModel)]="selectedDate" dateFormat="dd/mm/yy"></p-calendar>
+  </div>
+  <div class="p-col">
+    <button pButton label="Buscar por fecha" icon="pi pi-search" (click)="onSearchByDate()"></button>
+  </div>
+</div>
+
+<p-table
+  [value]="PagosData"
+  [expandedRowKeys]="expandedRows"
+  dataKey="id"
+  (onRowExpand)="onRowExpand($event)"
+  (onRowCollapse)="onRowCollapse($event)"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  styleClass="p-datatable-striped p-datatable-sm"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre Empleados</th>
+      <th>Monto a Pagar</th>
+      <th>Fecha del Pago</th>
+      <th>Detalles</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-pago>
+    <tr>
+      <td>{{ pago.nombre_empleado }}</td>
+      <td>{{ pago.monto_a_pagar }}</td>
+      <td>{{ pago.fecha_pago | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-chevron-down"
+          (click)="toggleRow(pago)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="rowexpansion" let-pago>
+    <tr>
+      <td colspan="4">
+        <div class="p-ml-4">
+          <h4>Detalles del Pago</h4>
+          <p><b>Faltas:</b></p>
+          <ul>
+            <li><b>Días Faltados:</b> {{ pago.detalle?.faltas?.dias_faltados }}</li>
+            <li><b>Descuento:</b> {{ pago.detalle?.faltas?.descuento }}</li>
+          </ul>
+          <p><b>Préstamos:</b></p>
+          <ul *ngFor="let prestamo of pago.detalle?.prestamos">
+            <li><b>Razón:</b> {{ prestamo.razon }}</li>
+            <li><b>Abonado:</b> {{ prestamo.monto_abonado }}</li>
+            <li><b>Restante:</b> {{ prestamo.monto_restante }}</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
